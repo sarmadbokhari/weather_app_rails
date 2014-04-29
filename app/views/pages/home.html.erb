@@ -1,3 +1,26 @@
 <h1>Weather App</h1>
+
+<form action="/" method="post" class="zipcode">
+  <label for="title">Zipcode:</label>
+  <input type="text" id="zip">
+
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+  <input type="submit" value="submit">
+
+</form>
+
 It is <%= @weather_lookup.temperature %> degrees in Corona, CA!
 <%= image_tag @weather_lookup.icon %>
+
+<script type="javascript">
+$(".zipcode").on("submit", function(e){
+  e.preventDefault();
+  var zipcode = $("#zip").val();
+  $.get("http://api.wunderground.com/api/7ca492154b75d353/hourly/q/"+ zipcode +".json", function(data){
+      console.log(data);
+      $.post("/", function(data))
+  });
+});
+
+</script>
