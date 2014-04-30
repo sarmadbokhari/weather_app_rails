@@ -30,6 +30,7 @@ class WeathersController < ApplicationController
       if @weather.save
         format.html { redirect_to @weather, notice: 'Weather was successfully created.' }
         format.json { render action: 'show', status: :created, location: @weather }
+        format.js {}
       else
         format.html { render action: 'new' }
         format.json { render json: @weather.errors, status: :unprocessable_entity }
